@@ -1,0 +1,50 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Règles pour la collection users
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow create: if request.auth != null && request.auth.uid == userId;  // Permet la création lors de l'inscription
+      allow update: if request.auth != null && request.auth.uid == userId;  // Permet la mise à jour de son propre profil
+      allow delete: if false;  // Empêche la suppression
+    }
+
+    // Règles pour la collection makeup_sessions
+    match /makeup_sessions/{sessionId} {
+      allow read: if request.auth != null && 
+        (resource.data.professorId == get(/databases/$(database)/documents/users/$(request.auth.uid)).data.professorId);
+      allow write: if false;  // Seuls les administrateurs peuvent modifier via la console
+    }
+
+    // Règles pour la collection attendances
+    match /attendances/{attendanceId} {
+      allow read: if request.auth != null;  // Les professeurs peuvent lire les présences
+      allow create: if request.auth != null;  // Les professeurs peuvent créer des présences
+      allow update, delete: if false;  // Empêche la modification et la suppression
+    }
+
+    // Règles pour la collection groups
+    match /groups/{groupId} {
+      // Permettre la lecture si l'utilisateur est authentifié
+      allow read: if request.auth != null;
+    }
+
+    // Règles pour la collection students
+    match /students/{studentId} {
+      // Permettre la lecture si l'utilisateur est authentifié
+      allow read: if request.auth != null;
+    }
+
+    // Règles pour la collection sites
+    match /sites/{siteId} {
+      // Permettre la lecture si l'utilisateur est authentifié
+      allow read: if request.auth != null;
+    }
+
+    // Règles pour les autres collections (groups, students, sites)
+    match /{document=**} {
+      allow read: if request.auth != null;  // Seuls les utilisateurs connectés peuvent lire
+      allow write: if false;  // Seuls les administrateurs peuvent modifier via la console
+    }
+  }
+} 

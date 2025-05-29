@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mes Documents"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/green"
+        android:layout_marginBottom="16dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLoadCours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Load Cours Document"
+        android:layout_gravity="end"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/green"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLoadTPs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Load TPs Document"
+        android:layout_gravity="end"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/green"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cours Documents"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/green"
+        android:layout_marginBottom="8dp"/>
+
+    <ListView
+        android:id="@+id/listViewCours"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="16dp"
+        android:divider="@color/green"
+        android:dividerHeight="1dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TPs Documents"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/green"
+        android:layout_marginBottom="8dp"/>
+
+    <ListView
+        android:id="@+id/listViewTPs"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@color/green"
+        android:dividerHeight="1dp"/>
+
+</LinearLayout> 
