@@ -1,0 +1,114 @@
+📱 EMSISmertPresence – Documentation Technique & Utilisateur
+1. Présentation Générale
+EMSI Prof est une application Android destinée aux professeurs de l’EMSI pour faciliter la gestion des absences, la consultation de documents, la visualisation du planning, la gestion des rattrapages, la messagerie interne, et l’accès à un assistant virtuel.
+L’application utilise Firebase pour l’authentification et la gestion des données.
+2. Documentation Utilisateur
+2.1. Installation & Connexion
+Installation : L’application s’installe via Android Studio ou un APK fourni.
+Connexion : Les professeurs se connectent avec leur email professionnel et un mot de passe. La création de compte et la validation par email sont gérées via Firebase Auth.
+2.2. Navigation & Fonctionnalités
+Accueil (Tableau de Bord)
+Affichage du nom, prénom et photo du professeur.
+Accès rapide aux principales fonctionnalités via des cartes sur fond blanc.
+Fonctionnalités accessibles :
+Rattrapages : Liste des sessions de rattrapage à venir.
+Messages : Messagerie interne pour communiquer avec l’administration ou les collègues.
+Liste d’absences : Visualisation et gestion des absences des étudiants (présence, remarques).
+Documents : Consultation des documents professionnels (états d’enseignement, etc.).
+Maps : Localisation des sites de l’école via Google Maps.
+Planning : Visualisation de l’emploi du temps.
+Assistant : Assistant virtuel pour poser des questions sur l’utilisation de l’application.
+Profil
+Affichage et modification des informations personnelles (nom, téléphone, département, statut, filière).
+Changement du mot de passe.
+Historique des connexions (sessions).
+Historique des sessions
+Liste des connexions avec date, heure et appareil utilisé.
+Déconnexion
+Accessible via le menu en haut à droite.
+2.3. Conseils d’utilisation
+Utilisez la grille d’accueil pour accéder rapidement à chaque fonctionnalité.
+Mettez à jour vos informations personnelles depuis la page Profil.
+Consultez l’historique des sessions pour vérifier vos connexions.
+Utilisez l’assistant virtuel pour toute question sur l’application.
+3. Documentation Technique
+3.1. Architecture & Technologies
+Langage : Java (Android)
+Base de données : Firebase Firestore (NoSQL)
+Authentification : Firebase Auth (email/mot de passe)
+UI : Material Design (CardView, GridLayout, RecyclerView, etc.)
+Maps : Google Maps API (affichage des sites)
+Assistant : Intégration d’un LLM (ex : Gemini, Llama) pour l’assistance
+> Remarque : Le stockage Firebase Storage n’est pas utilisé dans cette version.
+3.2. Structure du projet
+app/
+ └── src/
+     └── main/
+         ├── java/com/example/emsi_app/
+         │    ├── ProfileActivity.java
+         │    ├── EditProfileActivity.java
+         │    ├── ChangePasswordActivity.java
+         │    ├── SessionHistoryActivity.java
+         │    ├── SessionAdapter.java
+         │    ├── Session.java
+         │    └── ... (autres activités)
+         └── res/
+              ├── layout/
+              │    ├── home.xml
+              │    ├── activity_profile.xml
+              │    ├── activity_edit_profile.xml
+              │    ├── activity_change_password.xml
+              │    ├── activity_session_history.xml
+              │    └── item_session.xml
+              └── values/
+                   └── colors.xml, strings.xml, themes.xml, etc.
+3.3. Fonctionnement des modules principaux
+a) Authentification
+Création et connexion de comptes professeurs via Firebase Auth.
+Validation de l’email à l’inscription.
+Sécurité : changement de mot de passe avec réauthentification.
+b) Gestion des absences
+Sélection du groupe et du site d’enseignement.
+Affichage de la liste des étudiants.
+Marquage des présents/absents et ajout de remarques.
+Sauvegarde des absences dans Firestore.
+c) Rattrapages
+Affichage des sessions de rattrapage à venir pour le professeur connecté.
+d) Documents
+Consultation des documents professionnels (états d’enseignement, etc.) stockés dans Firestore.
+e) Planning
+Visualisation de l’emploi du temps du professeur.
+f) Maps
+Affichage des sites de l’école sur Google Maps.
+g) Assistant virtuel
+Intégration d’un assistant LLM pour répondre aux questions sur l’utilisation de l’application.
+h) Profil
+Affichage et modification des informations personnelles.
+Historique des connexions (sessions) enregistré à chaque accès au profil.
+3.4. Sécurité & Bonnes pratiques
+Utilisation de .gitignore pour ne pas versionner les fichiers sensibles ou inutiles (/build, /local.properties, etc.).
+Séparation claire entre logique métier (Java) et interface (XML).
+Utilisation de Toast pour les messages d’erreur ou de succès.
+Règles de sécurité Firestore à configurer pour restreindre l’accès aux données.
+3.5. Dépendances principales
+com.google.firebase:firebase-auth
+com.google.firebase:firebase-firestore
+com.google.android.material:material
+androidx.recyclerview:recyclerview
+androidx.cardview:cardview
+com.google.android.gms:play-services-maps
+(voir build.gradle pour la liste complète)
+3.6. Limitations connues
+Le stockage de fichiers (Firebase Storage) n’est pas utilisé.
+L’application est optimisée pour les professeurs, pas pour les étudiants.
+Certaines fonctionnalités peuvent nécessiter une connexion internet stable.
+4. Évolutions possibles
+Ajout de notifications push.
+Export des listes d’absences.
+Gestion des groupes et des matières.
+Mode sombre.
+Intégration d’un calendrier interactif.
+Ajout de la gestion des étudiants (si besoin).
+5. Contact & Support
+Pour toute question ou bug, contactez l’équipe de développement ou utilisez l’assistant virtuel intégré.
+
